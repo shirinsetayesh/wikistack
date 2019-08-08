@@ -4,8 +4,12 @@ const {
   db
 } = require('./models');
 const models = require('./models/index.js');
+const userRoute = require('./routes/user');
+const wikiRoute = require('./routes/wiki');
 const app = express();
 const PORT = 3000;
+
+app.use('/wiki', wikiRoute);
 
 //parses url encoded bodies
 app.use(express.urlencoded({
@@ -29,6 +33,7 @@ init();
 models.db.sync({
   force: true
 });
+
 
 
 db.authenticate().then(() => {
